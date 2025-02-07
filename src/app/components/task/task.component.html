@@ -1,12 +1,16 @@
-<form>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
   <h1>Create New Task...</h1>
-  <input type="text" placeholder="Title" />
+  <input type="text" placeholder="Title" formControlName="title" />
 
   <label for="description">Description</label>
-  <textarea id="description" placeholder="Description"></textarea>
+  <textarea
+    id="description"
+    placeholder="Description"
+    formControlName="description"
+  ></textarea>
 
   <label for="priority">Priority</label>
-  <select name="priority" id="priority">
+  <select id="priority" formControlName="priority">
     <option value="High">High</option>
     <option value="Low">Low</option>
     <option value="Moderate">Moderate</option>
@@ -14,7 +18,7 @@
   </select>
 
   <label for="storyPoints">Story Points</label>
-  <select name="storyPoints" id="storyPoints">
+  <select id="storyPoints" formControlName="storyPoints">
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
