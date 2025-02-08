@@ -12,5 +12,5 @@ import { TaskComponent } from './components/task/task.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  titleName = 'Easy Tasks!'; //parent
+  titleName = 'Easy Tasks!';
 }
