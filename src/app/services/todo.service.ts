@@ -7,35 +7,19 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TodoService {
   http = inject(HttpClient);
-  tasks: Array<Task> = [
-    {
-      title: 'grocerries',
-      description: 'ffff',
-      taskPriority: 'High',
-      storyPoints: 1,
-    },
-    {
-      title: 'fff',
-      description: 'fddss',
-      taskPriority: 'High',
-      storyPoints: 1,
-    },
-  ];
-
-  getTodosFromApi() {
-    const url = 'https://jsonplaceholder.typicode.com/todos/1';
-    return this.http.get<Array<Task>>(url);
-  }
+  apiUrl = 'http://localhost:3000/tasks';
 
   getTasks() {
-    return this.tasks;
+    return this.http.get<Array<Task>>(this.apiUrl);
   }
 
   addTask(task: Task) {
-    this.tasks.push(task);
+    return this.http.post<Task>(this.apiUrl, task);
   }
 
-  removeTask(index: number) {}
+  removeTask(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 
-  editTask(index: number) {}
+  editTask(id: number) {}
 }

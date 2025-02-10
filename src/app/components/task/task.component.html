@@ -36,5 +36,6 @@
     <p>{{ task.description }}</p>
     <p><strong>Priority:</strong> {{ task.taskPriority }}</p>
     <p><strong>Story Points:</strong> {{ task.storyPoints }}</p>
+    <button (click)="onDelete(task.id)">Delete</button>
   </div>
 </div>

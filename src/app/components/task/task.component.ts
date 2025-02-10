@@ -8,7 +8,7 @@ import {
 import { TodoService } from '../../services/todo.service';
 import { Task } from './task.model';
 import { NgFor } from '@angular/common';
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -27,24 +27,30 @@ export class TaskComponent implements OnInit {
     storyPoints: new FormControl('1', Validators.required),
   });
 
-  // constructor(private todoService: TodoService) {}
-
   ngOnInit(): void {
-    console.log(this.todoService.tasks);
-    this.todoService.getTodosFromApi().pipe(
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-    );
-    // .subscribe((todos) => {
-    //   this.taskForm.set(todos);
-    // });
+    this.loadTasks();
+  }
+
+  //pobieramy liste z API
+
+  loadTasks() {
+    this.todoService
+      .getTasks()
+      .pipe(
+        catchError((err) => {
+          console.error('Błąd pobierania zadań:', err);
+          return of([]);
+        })
+      )
+      .subscribe((todos) => {
+        this.tasks = todos;
+      });
   }
 
   onSubmit() {
     if (this.taskForm.valid) {
       const newTask: Task = {
+        id: 0,
         title: this.taskForm.value.title ?? '',
         description: this.taskForm.value.description ?? '',
         taskPriority:
@@ -56,11 +62,18 @@ export class TaskComponent implements OnInit {
         storyPoints: Number(this.taskForm.value.storyPoints) || 1,
       };
 
-      this.todoService.addTask(newTask);
-
-      this.taskForm.reset();
+      this.todoService.addTask(newTask).subscribe(() => {
+        this.taskForm.reset();
+        this.loadTasks();
+      });
     } else {
       alert('The form is incorrect !');
     }
+  }
+
+  onDelete(taskId: number) {
+    this.todoService.removeTask(taskId).subscribe(() => {
+      this.loadTasks();
+    });
   }
 }
