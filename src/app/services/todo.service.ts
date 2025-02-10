@@ -1,26 +1,31 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Task } from '../components/task/task.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TodoService {
-  private tasks: Task[] = [
+  http = inject(HttpClient);
+  tasks: Array<Task> = [
     {
-      title: 'Learn Angular',
-      description: 'Study components & services',
+      title: 'grocerries',
+      description: 'ffff',
       taskPriority: 'High',
-      storyPoints: 5,
+      storyPoints: 1,
     },
     {
-      title: 'Build a To-Do App',
-      description: 'Use Angular and TypeScript',
-      taskPriority: 'Moderate',
-      storyPoints: 8,
+      title: 'fff',
+      description: 'fddss',
+      taskPriority: 'High',
+      storyPoints: 1,
     },
   ];
 
-  constructor() {}
+  getTodosFromApi() {
+    const url = 'https://jsonplaceholder.typicode.com/todos/1';
+    return this.http.get<Array<Task>>(url);
+  }
 
   getTasks() {
     return this.tasks;

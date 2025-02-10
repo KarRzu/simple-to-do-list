@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,6 +8,7 @@ import {
 import { TodoService } from '../../services/todo.service';
 import { Task } from './task.model';
 import { NgFor } from '@angular/common';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-task',
@@ -15,7 +16,8 @@ import { NgFor } from '@angular/common';
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
+  todoService = inject(TodoService);
   tasks: Task[] = [];
 
   taskForm = new FormGroup({
@@ -25,8 +27,19 @@ export class TaskComponent {
     storyPoints: new FormControl('1', Validators.required),
   });
 
-  constructor(private todoService: TodoService) {
-    this.tasks = this.todoService.getTasks();
+  // constructor(private todoService: TodoService) {}
+
+  ngOnInit(): void {
+    console.log(this.todoService.tasks);
+    this.todoService.getTodosFromApi().pipe(
+      catchError((err) => {
+        console.log(err);
+        throw err;
+      })
+    );
+    // .subscribe((todos) => {
+    //   this.taskForm.set(todos);
+    // });
   }
 
   onSubmit() {

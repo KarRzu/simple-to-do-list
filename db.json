@@ -1,0 +1,18 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Go to the gym",
+      "description": "2 times a week",
+      "taskPriority": "High",
+      "storyPoints": 2
+    },
+    {
+      "id": 2,
+      "title": "Go to the cinema",
+      "description": "On Sunday",
+      "taskPriority": "Low",
+      "storyPoints": 2
+    }
+  ]
+}
