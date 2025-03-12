@@ -1,10 +1,19 @@
+$primary-color: #25113d;
+$secondary-color: #bf9ee5;
+$accent-color: #3e1f5e;
+$error-color: #e74c3c;
+$success-color: #3498db;
+
+$text-color: #25113d;
+$background-color: #f9f9f9;
+
 form {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: #25113d;
-  background-color: #bf9ee5;
+  color: $text-color;
+  background-color: $secondary-color;
   padding: 1rem;
   width: 50%;
   height: 40%;
@@ -23,7 +32,7 @@ form {
   button {
     margin-top: 1rem;
     padding: 0.7rem;
-    background-color: #25113d;
+    background-color: $primary-color;
     color: white;
     border: none;
     border-radius: 5px;
@@ -33,18 +42,18 @@ form {
   }
 
   button:hover {
-    background-color: #3e1f5e;
+    background-color: $accent-color;
   }
 }
 
-#task-list {
+.task-list {
   ul {
     list-style-type: none;
     padding: 0;
   }
 
   .task-item {
-    background: #f9f9f9;
+    background: $background-color;
     border-radius: 8px;
     padding: 16px;
     margin: 10px 0;
@@ -63,12 +72,12 @@ form {
   }
 
   button:first-child {
-    background: #e74c3c;
+    background: $error-color;
     color: white;
   }
 
   button:last-child {
-    background: #3498db;
+    background: $success-color;
     color: white;
   }
 }
