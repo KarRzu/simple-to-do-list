@@ -56,7 +56,9 @@ export class TaskComponent implements OnInit {
         description: this.taskForm.value.description ?? '',
         taskPriority:
           (this.taskForm.value.taskPriority as Task['taskPriority']) ?? 'Low',
-        storyPoints: Number(this.taskForm.value.storyPoints) || 1,
+        storyPoints: this.taskForm.value.storyPoints
+          ? +this.taskForm.value.storyPoints
+          : 1,
       };
 
       this.todoService.addTask(newTask).subscribe(() => {

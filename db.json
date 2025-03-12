@@ -8,17 +8,17 @@
       "storyPoints": 2
     },
     {
-      "id": "2",
-      "title": "Go to the cinema",
-      "description": "On Sunday",
-      "taskPriority": "Low",
-      "storyPoints": 2
-    },
-    {
-      "id": 0,
+      "id": "0",
       "title": "Read a book",
       "description": "3 times a week",
       "taskPriority": "High",
+      "storyPoints": 5
+    },
+    {
+      "id": 0,
+      "title": "Go to the shopping",
+      "description": "2 times a week",
+      "taskPriority": "Low",
       "storyPoints": 5
     }
   ]
