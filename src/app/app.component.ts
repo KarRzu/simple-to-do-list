@@ -9,7 +9,7 @@ import { TaskComponent } from './components/task/task.component';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, TaskComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   titleName = 'Easy Tasks!';

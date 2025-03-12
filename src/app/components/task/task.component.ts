@@ -12,9 +12,10 @@ import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-task',
+  standalone: true,
   imports: [ReactiveFormsModule, NgFor],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.scss',
+  styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent implements OnInit {
   todoService = inject(TodoService);
@@ -54,11 +55,7 @@ export class TaskComponent implements OnInit {
         title: this.taskForm.value.title ?? '',
         description: this.taskForm.value.description ?? '',
         taskPriority:
-          (this.taskForm.value.taskPriority as
-            | 'High'
-            | 'Moderate'
-            | 'Low'
-            | 'Critical') ?? 'Low',
+          (this.taskForm.value.taskPriority as Task['taskPriority']) ?? 'Low',
         storyPoints: Number(this.taskForm.value.storyPoints) || 1,
       };
 
