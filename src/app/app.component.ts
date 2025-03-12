@@ -1,4 +1,3 @@
-import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { USERS } from '../users';
@@ -7,6 +6,7 @@ import { TaskComponent } from './components/task/task.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, HeaderComponent, TaskComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

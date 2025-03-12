@@ -37,56 +37,38 @@ form {
   }
 }
 
-/* Stylowanie dla divów z zadaniami */
-#main-card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#task-list {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 
-  .task-card {
-    margin-bottom: 20px;
-    margin-top: 35px;
-    padding: 15px;
-    background-color: #e9ecef;
+  .task-item {
+    background: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 50%;
-  }
-
-  .task-card h3 {
-    margin: 0;
-    font-size: 1.2rem;
-    color: #333;
-  }
-
-  .task-card p {
-    margin: 5px 0;
-    color: #555;
-  }
-
-  .task-card p strong {
-    color: #333;
+    padding: 16px;
+    margin: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .btn {
-    button {
-      margin: 20px;
-    }
+    display: flex;
+    gap: 8px;
   }
-}
 
-button {
-  margin-top: 1rem;
-  padding: 0.7rem;
-  background-color: #25113d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 200px;
-  font-weight: bold;
-}
+  button {
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
 
-button:hover {
-  background-color: #3e1f5e;
+  button:first-child {
+    background: #e74c3c;
+    color: white;
+  }
+
+  button:last-child {
+    background: #3498db;
+    color: white;
+  }
 }

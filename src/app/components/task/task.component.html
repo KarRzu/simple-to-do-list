@@ -30,15 +30,17 @@
   <button type="submit">Send</button>
 </form>
 
-<div *ngFor="let task of tasks" id="main-card-content">
-  <div class="task-card">
-    <h3>{{ task.title }}</h3>
-    <p>{{ task.description }}</p>
-    <p><strong>Priority:</strong> {{ task.taskPriority }}</p>
-    <p><strong>Story Points:</strong> {{ task.storyPoints }}</p>
-    <div class="btn">
-      <button (click)="onDelete(task.id)">Delete</button>
-      <button>Edit</button>
-    </div>
-  </div>
-</div>
+<section id="task-list">
+  <ul>
+    <li *ngFor="let task of tasks" class="task-item">
+      <h3>{{ task.title }}</h3>
+      <p>{{ task.description }}</p>
+      <p><strong>Priority:</strong> {{ task.taskPriority }}</p>
+      <p><strong>Story Points:</strong> {{ task.storyPoints }}</p>
+      <div class="btn">
+        <button (click)="onDelete(task.id)">Delete</button>
+        <button>Edit</button>
+      </div>
+    </li>
+  </ul>
+</section>
