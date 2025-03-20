@@ -1,46 +1,15 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <h1>Create New Task...</h1>
-  <input type="text" placeholder="Title" formControlName="title" />
-
-  <label for="description">Description</label>
-  <textarea
-    id="description"
-    placeholder="Description"
-    formControlName="description"
-  ></textarea>
-
-  <label for="priority">Priority</label>
-  <select id="priority" formControlName="taskPriority">
-    <option value="High">High</option>
-    <option value="Low">Low</option>
-    <option value="Moderate">Moderate</option>
-    <option value="Critical">Critical</option>
-  </select>
-
-  <label for="storyPoints">Story Points</label>
-  <select id="storyPoints" formControlName="storyPoints">
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="5">5</option>
-    <option value="10">10</option>
-    <option value="15">15</option>
-  </select>
-
-  <button type="submit">Send</button>
-</form>
-
-<section class="task-list">
-  <ul>
-    <li *ngFor="let task of tasks" class="task-item">
-      <h3>{{ task.title }}</h3>
-      <p>{{ task.description }}</p>
-      <p><strong>Priority:</strong> {{ task.taskPriority }}</p>
-      <p><strong>Story Points:</strong> {{ task.storyPoints }}</p>
-      <div class="btn">
-        <button (click)="onDelete(task.id)">Delete</button>
-        <button>Edit</button>
-      </div>
-    </li>
-  </ul>
-</section>
+<div class="task-container">
+  <div class="user-selection-container">
+    <p *ngIf="name; else noUserSelected">{{ name }}</p>
+    <ng-template #noUserSelected>
+      <p>Select a user</p>
+    </ng-template>
+    <button>Add Task</button>
+  </div>
+  <div class="task-info">
+    <h1>{{ title }}</h1>
+    <h2>{{ dueDate }}</h2>
+    <p>{{ summary }}</p>
+    <button>Complete</button>
+  </div>
+</div>

@@ -1,2 +1,10 @@
-<app-header [title]="titleName" /> <app-task />
-<app-users-list></app-users-list>
+<app-header [title]="titleName" />
+<div class="main-content">
+  <app-users-list (select)="onSelectUser($event)" />
+  <app-task
+    [name]="selectedUser.name"
+    [title]="selectedTask.title"
+    [summary]="selectedTask.summary"
+    [dueDate]="selectedTask.dueDate"
+  />
+</div>

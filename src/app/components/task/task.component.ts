@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,72 +7,19 @@ import {
 } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
 import { Task } from './task.model';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [CommonModule, ReactiveFormsModule, NgFor],
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
-export class TaskComponent implements OnInit {
-  todoService = inject(TodoService);
-  tasks: Task[] = [];
-
-  taskForm = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description: new FormControl('', Validators.required),
-    taskPriority: new FormControl('High', Validators.required),
-    storyPoints: new FormControl('1', Validators.required),
-  });
-
-  ngOnInit(): void {
-    this.loadTasks();
-  }
-
-  //pobieramy liste z API
-
-  loadTasks() {
-    this.todoService
-      .getTasks()
-      .pipe(
-        catchError((err) => {
-          console.error('Błąd pobierania zadań:', err);
-          return of([]);
-        })
-      )
-      .subscribe((todos) => {
-        this.tasks = todos;
-      });
-  }
-
-  onSubmit() {
-    if (this.taskForm.valid) {
-      const newTask: Task = {
-        id: 0,
-        title: this.taskForm.value.title ?? '',
-        description: this.taskForm.value.description ?? '',
-        taskPriority:
-          (this.taskForm.value.taskPriority as Task['taskPriority']) ?? 'Low',
-        storyPoints: this.taskForm.value.storyPoints
-          ? +this.taskForm.value.storyPoints
-          : 1,
-      };
-
-      this.todoService.addTask(newTask).subscribe(() => {
-        this.taskForm.reset();
-        this.loadTasks();
-      });
-    } else {
-      alert('The form is incorrect !');
-    }
-  }
-
-  onDelete(taskId: number) {
-    this.todoService.removeTask(taskId).subscribe(() => {
-      this.loadTasks();
-    });
-  }
+export class TaskComponent {
+  @Input({ required: true }) name!: string;
+  @Input({ required: true }) title!: string;
+  @Input({ required: true }) summary!: string;
+  @Input({ required: true }) dueDate!: string;
 }

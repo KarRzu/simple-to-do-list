@@ -1,5 +1,7 @@
-<ul *ngFor="let user of users">
-  <button class="user-list-btn">
-    <li>{{ user.name }}</li>
-  </button>
+<ul>
+  <li *ngFor="let user of users">
+    <button class="user-list-btn" (click)="onSelectUser(user.id)">
+      {{ user.name }}
+    </button>
+  </li>
 </ul>

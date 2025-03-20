@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { USERS } from './users';
 
 @Component({
@@ -10,4 +10,10 @@ import { USERS } from './users';
 })
 export class UsersListComponent {
   users = USERS;
+
+  @Output() select = new EventEmitter<string>();
+
+  onSelectUser(id: string) {
+    this.select.emit(id);
+  }
 }
