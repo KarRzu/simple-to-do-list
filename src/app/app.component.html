@@ -3,8 +3,8 @@
   <app-users-list (select)="onSelectUser($event)" />
   <app-task
     [name]="selectedUser.name"
-    [title]="selectedTask.title"
-    [summary]="selectedTask.summary"
-    [dueDate]="selectedTask.dueDate"
+    [title]="selectedTask?.title || 'No task assigned'"
+    [summary]="selectedTask?.summary || 'No summary available'"
+    [dueDate]="selectedTask?.dueDate || 'No due date'"
   />
 </div>

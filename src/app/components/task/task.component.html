@@ -1,10 +1,14 @@
+@if(isAddingTask) {
+<app-new-task (cancel)="onCancelAddTask()"></app-new-task>
+}
+
 <div class="task-container">
   <div class="user-selection-container">
     <p *ngIf="name; else noUserSelected">{{ name }}</p>
     <ng-template #noUserSelected>
       <p>Select a user</p>
     </ng-template>
-    <button>Add Task</button>
+    <button (click)="onStartAddTask()">Add Task</button>
   </div>
   <div class="task-info">
     <h1>{{ title }}</h1>
