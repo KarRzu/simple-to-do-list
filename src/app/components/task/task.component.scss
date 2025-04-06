@@ -1,11 +1,4 @@
-$primary-color: #25113d;
-$secondary-color: #bf9ee5;
-$accent-color: #3e1f5e;
-$error-color: #e74c3c;
-$success-color: #3498db;
-
-$text-color: #25113d;
-$background-color: #f9f9f9;
+@use "../../styles/variables" as *;
 
 .task-container {
   width: 685px;
@@ -20,7 +13,7 @@ $background-color: #f9f9f9;
     width: 100px;
     height: 40px;
     border-radius: 5px;
-    color: whitesmoke;
+    color: $background-color;
     font-weight: bold;
     cursor: pointer;
   }
