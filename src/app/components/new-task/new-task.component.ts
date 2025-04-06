@@ -1,14 +1,31 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { TodoService } from '../../services/todo.service';
+import { Task } from '../task/task.model';
 
 @Component({
   selector: 'app-new-task',
-  imports: [FormsModule],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.scss',
 })
 export class NewTaskComponent {
   @Output() cancel = new EventEmitter<void>();
+  @Output() taskAdded = new EventEmitter<Task>();
+
+  todoService = inject(TodoService);
+
+  taskForm = new FormGroup({
+    title: new FormControl('', [Validators.required]),
+    summary: new FormControl('', [Validators.required]),
+    dueDate: new FormControl('', [Validators.required]),
+  });
 
   enteredTitle = '';
 
@@ -16,5 +33,22 @@ export class NewTaskComponent {
     this.cancel.emit();
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.taskForm.invalid) {
+      console.log('Form is invalid');
+      return;
+    }
+
+    const task = this.taskForm.value as Task;
+
+    this.todoService.addTask(task).subscribe((addedTask) => {
+      if (addedTask) {
+        this.taskAdded.emit(addedTask);
+        this.taskForm.reset();
+        console.log('Task added:', addedTask);
+      } else {
+        console.error('Failed to add task');
+      }
+    });
+  }
 }

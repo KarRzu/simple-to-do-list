@@ -1,14 +1,8 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
 import { Task } from './task.model';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { catchError, of } from 'rxjs';
 import { NewTaskComponent } from '../new-task/new-task.component';
 
 @Component({
@@ -25,11 +19,36 @@ export class TaskComponent {
   @Input({ required: true }) dueDate!: string;
   isAddingTask: boolean = false;
 
+  tasks: Task[] = [];
+  todoService = inject(TodoService);
+
+  ngOnInit() {
+    this.todoService.getTasks().subscribe((data) => {
+      console.log('Loaded tasks:', data);
+      this.tasks = data;
+    });
+  }
+
   onStartAddTask() {
     this.isAddingTask = true;
   }
 
   onCancelAddTask() {
     this.isAddingTask = false;
+  }
+
+  onTaskAdded(newTask: Task) {
+    this.tasks.push(newTask);
+    this.isAddingTask = false;
+    console.log('New task added:', newTask);
+  }
+
+  removeTask(id: number): void {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.todoService.removeTask(id).subscribe(() => {
+        this.tasks.filter((task) => task.id !== id);
+        console.log(`Task with id ${id} was removed`);
+      });
+    }
   }
 }

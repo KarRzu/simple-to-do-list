@@ -1,25 +1,16 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Go to the gym",
-      "description": "2 times a week",
-      "taskPriority": "High",
-      "storyPoints": 2
+      "id": "05fb",
+      "title": "go to the shooping",
+      "summary": "2 times a week",
+      "dueDate": "2025-04-27"
     },
     {
-      "id": "2",
-      "title": "Read a book",
-      "description": "3 times a week",
-      "taskPriority": "High",
-      "storyPoints": 5
-    },
-    {
-      "id": "3",
-      "title": "Go to the shopping",
-      "description": "2 times a week",
-      "taskPriority": "Low",
-      "storyPoints": 5
+      "id": "c329",
+      "title": "go to the gym",
+      "summary": "3 times a week",
+      "dueDate": "2025-04-14"
     }
   ]
 }
