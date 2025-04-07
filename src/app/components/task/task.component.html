@@ -12,19 +12,23 @@
     <ng-template #noUserSelected>
       <p>Select a user</p>
     </ng-template>
-    <button (click)="onStartAddTask()">Add Task</button>
+    <app-button text="Add Task" (click)="onStartAddTask()"></app-button>
   </div>
   <div class="task-info">
     <h1>{{ title }}</h1>
     <h2>{{ dueDate }}</h2>
     <p>{{ summary }}</p>
-    <button>Complete</button>
+    <app-button text="Complete"></app-button>
   </div>
 </div>
 
 <ul>
   <li *ngFor="let task of tasks">
     {{ task.title }} - {{ task.summary }} ({{ task.dueDate }})
-    <button (click)="removeTask(task.id)">Delete</button>
+    <app-button
+      text="Delete"
+      variant="primary"
+      (click)="removeTask(task.id)"
+    ></app-button>
   </li>
 </ul>

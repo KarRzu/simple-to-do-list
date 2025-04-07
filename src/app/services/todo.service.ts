@@ -23,7 +23,7 @@ export class TodoService {
     return this.http.post<Task>(this.apiUrl, task).pipe(
       catchError((error) => {
         console.error('Error while add tasks:', error);
-        return of(null as unknown as Task);
+        return of({} as Task);
       })
     );
   }

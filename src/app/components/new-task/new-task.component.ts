@@ -8,10 +8,11 @@ import {
 } from '@angular/forms';
 import { TodoService } from '../../services/todo.service';
 import { Task } from '../task/task.model';
+import { ButtonComponent } from '../../shared/button/button.component';
 
 @Component({
   selector: 'app-new-task',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './new-task.component.html',
   styleUrl: './new-task.component.scss',
 })

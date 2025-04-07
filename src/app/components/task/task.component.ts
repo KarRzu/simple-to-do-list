@@ -4,11 +4,18 @@ import { TodoService } from '../../services/todo.service';
 import { Task } from './task.model';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { NewTaskComponent } from '../new-task/new-task.component';
+import { ButtonComponent } from '../../shared/button/button.component';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgFor, NewTaskComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    NgFor,
+    NewTaskComponent,
+    ButtonComponent,
+  ],
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
 })
