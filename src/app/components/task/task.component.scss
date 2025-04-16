@@ -1,0 +1,40 @@
+@use "../../styles/variables" as *;
+
+.task-container {
+  width: 685px;
+  height: auto;
+  padding: 30px;
+  background-color: $primary-color;
+  border-radius: 5px;
+
+  button {
+    background-color: $accent-color;
+    border: none;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    color: $background-color;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .task-info {
+    background-color: $secondary-color;
+    padding: 10px;
+
+    h1,
+    h2,
+    p {
+      color: #000000;
+    }
+  }
+}
+
+.user-selection-container {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    font-size: large;
+  }
+}
